@@ -3,7 +3,7 @@ namespace BowlingGameScore
 {
     public class BowlingGame
     {
-        public int Score;
+        public int Score { get; private set; }
         public BowlingGame()
         {
         }
