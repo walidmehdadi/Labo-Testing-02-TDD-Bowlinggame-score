@@ -12,9 +12,14 @@ namespace BowlingGameScoreTests
         }
 
         [Test]
-        public void CanCreateGame()
+        public void When_Roll_GlutterGame_Returns_0()
         {
             var game = new BowlingGame();
+            for (var i = 0; i < 20; i++)
+            {
+                game.Roll(0);
+            }
+            Assert.AreEqual(0, game.Score);
         }
     }
 }
