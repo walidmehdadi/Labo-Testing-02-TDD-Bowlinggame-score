@@ -47,6 +47,13 @@ namespace BowlingGameScoreTests
             Assert.AreEqual(24, game.Score);
         }
 
+        [Test]
+        public void When_Roll_PerfectGame_Returns_300()
+        {
+            RollMany(12, 10);
+            Assert.AreEqual(300, game.Score);
+        }
+
         private void RollMany(int rolls, int pins)
         {
             for (int i = 0; i < rolls; i++)
