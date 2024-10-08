@@ -1,16 +1,53 @@
 ﻿
+
 namespace BowlingGameScore
 {
     public class BowlingGame
     {
-        public int Score { get; private set; }
+        private int[] pins = new int[21];
+        private int currentRoll = 0;
+        public int Score 
+        {
+            get 
+            { 
+                int score =  0;
+                int rollIndex = 0;
+                for (int frame = 0; frame < 10; frame++)
+                {
+                    if (IsSpare(rollIndex))
+                    {
+                        score += GetSpareScore(rollIndex);
+                        rollIndex += 2;
+                    }
+                    else 
+                    {
+                        score += GetStandardScore(rollIndex);
+                        rollIndex += 2;
+                    }
+                }
+                return score;
+            } 
+        }
+
         public BowlingGame()
         {
         }
 
-        public void Roll(int pins)
+        public void Roll(int pinsThisRoll)
         {
-            Score += pins;
+            pins[currentRoll++] = pinsThisRoll;
+        }
+        private bool IsSpare(int rollIndex)
+        {
+            return pins[rollIndex] + pins[rollIndex + 1] == 10;
+        }
+        private int GetSpareScore(int rollIndex)
+        {
+            return pins[rollIndex] + pins[rollIndex + 1] + pins[rollIndex + 2];
+        }
+        private int GetStandardScore(int rollIndex)
+        {
+            return pins[rollIndex] + pins[rollIndex + 1];
         }
     }
 }
