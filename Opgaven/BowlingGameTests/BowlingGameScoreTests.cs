@@ -37,6 +37,16 @@ namespace BowlingGameScoreTests
             Assert.AreEqual(16, game.Score);
         }
 
+        [Test]
+        public void When_Roll_StrikeAndThreeAndFour_Returns_24()
+        {
+            game.Roll(10);
+            game.Roll(3);
+            game.Roll(4);
+            RollMany(17, 0);
+            Assert.AreEqual(24, game.Score);
+        }
+
         private void RollMany(int rolls, int pins)
         {
             for (int i = 0; i < rolls; i++)

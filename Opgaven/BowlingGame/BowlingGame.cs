@@ -1,5 +1,6 @@
 ﻿
 
+
 namespace BowlingGameScore
 {
     public class BowlingGame
@@ -14,7 +15,12 @@ namespace BowlingGameScore
                 int rollIndex = 0;
                 for (int frame = 0; frame < 10; frame++)
                 {
-                    if (IsSpare(rollIndex))
+                    if (IsStrike(rollIndex))
+                    {
+                        score += GetStrikeScore(rollIndex);
+                        rollIndex ++;
+                    }
+                    else if (IsSpare(rollIndex))
                     {
                         score += GetSpareScore(rollIndex);
                         rollIndex += 2;
@@ -28,7 +34,6 @@ namespace BowlingGameScore
                 return score;
             } 
         }
-
         public BowlingGame()
         {
         }
@@ -37,9 +42,17 @@ namespace BowlingGameScore
         {
             pins[currentRoll++] = pinsThisRoll;
         }
+        private bool IsStrike(int rollIndex)
+        {
+            return pins[rollIndex] == 10;
+        }
         private bool IsSpare(int rollIndex)
         {
             return pins[rollIndex] + pins[rollIndex + 1] == 10;
+        }
+        private int GetStrikeScore(int rollIndex)
+        {
+            return pins[rollIndex] + pins[rollIndex + 1] + pins[rollIndex + 2];
         }
         private int GetSpareScore(int rollIndex)
         {
