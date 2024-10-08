@@ -1,3 +1,4 @@
+using BowlingGameScore;
 using NUnit.Framework;
 
 namespace BowlingGameScoreTests
